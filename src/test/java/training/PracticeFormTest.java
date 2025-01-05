@@ -4,6 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import org.openqa.selenium.Keys;
+import training.pages.HomePage;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,24 +19,26 @@ public class PracticeFormTest {
     @Test
     public void navigateFromHomepageToPracticeFormPage (){
         openBrowser();
-        clickOnFormsMenu();
-        clickOnPracticeFormSubmenu();
-        scrollDown();
-        fillFirstName();
-        fillLastName();
-        fillEmail();
-        scrollDown();
-        fillGender("Male");
-        selectSubjects();
-        fillHobbies("Sports");
-        uploadPicture();
-        fillCurentAddress();
-        fillPhoneNumber();
-        scrollDown();
-        fillDateOfBirth("02 Aprilie 1996");
-        fillTheState();
-        fillTheCity();
-        clickOnSubmitButton();
+        HomePage homePage = new HomePage(driver);
+        homePage.isPageLoaded();
+        homePage.goToDesireMenu("Forms");
+//        clickOnPracticeFormSubmenu();
+//        scrollDown();
+//        fillFirstName();
+//        fillLastName();
+//        fillEmail();
+//        scrollDown();
+//        fillGender("Male");
+//        selectSubjects();
+//        fillHobbies("Sports");
+//        uploadPicture();
+//        fillCurentAddress();
+//        fillPhoneNumber();
+//        scrollDown();
+//        fillDateOfBirth("02 Aprilie 1996");
+//        fillTheState();
+//        fillTheCity();
+//        clickOnSubmitButton();
 
     }
 
