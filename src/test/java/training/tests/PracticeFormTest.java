@@ -12,6 +12,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static training.constants.MenuKeys.FORMS_MENU;
+import static training.constants.SubMenuKeys.PRACTICE_FORM_SUBMENIU;
+
 public class PracticeFormTest extends BaseTest {
 
     //cream o metoda de test care sa mearga de pe pagina principala pana pe pagina Practice Form
@@ -20,9 +23,9 @@ public class PracticeFormTest extends BaseTest {
     @Test
     public void navigateFromHomepageToPracticeFormPage (){
         homePage.isPageLoaded();
-        homePage.goToDesireMenu("Forms");
+        homePage.goToDesireMenu(FORMS_MENU);
         commonPage.isPageLoaded();
-        commonPage.selectSubMenu("Practice Form");
+        commonPage.selectSubMenu(PRACTICE_FORM_SUBMENIU);
         PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
         practiceFormPage.isPageLoaded();
 //        practiceFormPage.fillFirstName();

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import training.helpers.ElementsHelper;
 
 import java.util.List;
 
@@ -30,7 +31,6 @@ public class HomePage extends BasePage{
     }
 
     //Facem metode specifice pentru pagina
-
     //Facem o metoda care sa faca click pe meniul Forms
 //    public void clickOnFormsMenu (){
 //        scrollDown();
@@ -39,18 +39,14 @@ public class HomePage extends BasePage{
 
     //Facem o metoda care sa faca click pe un meniu ales de noi
     public void goToDesireMenu(String menuName){
-        scrollDown();
-        for (WebElement element : menuListElement)
-            if (element.getText().equals(menuName)){
-                element.click();
-                break;
-            }
+        elementsHelper.scrollDown();
+        elementsHelper.selectElementByTextFromList(menuName,menuListElement);
 
     }
 
     //Facem o metoda care sa faca scroll down pe pagina
-    public void scrollDown (){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,400)");
-    }
+//    public void scrollDown (){
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("window.scrollBy(0,400)");
+//    }
 }

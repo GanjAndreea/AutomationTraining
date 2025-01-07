@@ -9,6 +9,9 @@ import training.pages.AlertsPage;
 
 import java.time.Duration;
 
+import static training.constants.MenuKeys.ALERTS_FRAMES_WINDOWS_MENU;
+import static training.constants.SubMenuKeys.ALERTS_SUBMENU;
+
 public class AlertsTests extends BaseTest {
 
   //  WebDriver driver;
@@ -16,9 +19,9 @@ public class AlertsTests extends BaseTest {
     @Test
     public void alertsTests(){
         homePage.isPageLoaded();
-        homePage.goToDesireMenu("Alerts, Frame & Windows");
+        homePage.goToDesireMenu(ALERTS_FRAMES_WINDOWS_MENU);
         commonPage.isPageLoaded();
-        commonPage.selectSubMenu("Alerts");
+        commonPage.selectSubMenu(ALERTS_SUBMENU);
         AlertsPage alertsPage = new AlertsPage(driver);
         alertsPage.isPageLoaded();
         alertsPage.interactWithAllAlerts();

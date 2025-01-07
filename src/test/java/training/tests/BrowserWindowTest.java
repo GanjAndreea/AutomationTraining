@@ -4,14 +4,17 @@ import org.testng.annotations.Test;
 import training.pages.BasePage;
 import training.pages.WindowsPage;
 
+import static training.constants.MenuKeys.ALERTS_FRAMES_WINDOWS_MENU;
+import static training.constants.SubMenuKeys.BROWSER_WINDOWS;
+
 public class BrowserWindowTest extends BaseTest {
 
     @Test
     public void testMethod(){
         homePage.isPageLoaded();
-        homePage.goToDesireMenu("Alerts, Frame & Windows");
+        homePage.goToDesireMenu(ALERTS_FRAMES_WINDOWS_MENU);
        commonPage.isPageLoaded();
-       commonPage.selectSubMenu("Browser Windows");
+       commonPage.selectSubMenu(BROWSER_WINDOWS);
        WindowsPage windowsPage = new WindowsPage(driver);
         windowsPage.isPageLoaded();
         windowsPage.clickOnNewTabButton();
