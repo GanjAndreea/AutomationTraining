@@ -140,9 +140,9 @@ public class PracticeFormPage extends BasePage{
     public void dateOfBirth (){
         elementsHelper.selectElementUsingKeys(dateOfBirth,"2 Aprilie 1996",Keys.HOME);
         for (int index = 1; index <=11 ; index++){
-            defaultElement.sendKeys(Keys.DELETE);
+            elementsHelper.keyboardEnters(defaultElement,Keys.DELETE);
         }
-        dateOfBirth.sendKeys(Keys.ENTER);
+        elementsHelper.keyboardEnters(dateOfBirth,Keys.ENTER);
     }
 
 //    public void scrollDown (){
@@ -173,6 +173,7 @@ public class PracticeFormPage extends BasePage{
 
     @Override
     public void isPageLoaded() {
+        elementsHelper.waitForElement(pageTitleElement);
         Assert.assertEquals(pageTitleElement.getText(), "Practice Form", "Title is invalid and actual value is: " +pageTitleElement.getText());
     }
 }
