@@ -1,27 +1,34 @@
-package training;
+package training.tests;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import org.openqa.selenium.Keys;
+import training.pages.CommonPage;
 import training.pages.HomePage;
+import training.pages.PracticeFormPage;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PracticeFormTest {
+public class PracticeFormTest extends BaseTest {
 
     //cream o metoda de test care sa mearga de pe pagina principala pana pe pagina Practice Form
 
-    public WebDriver driver;
 
     @Test
     public void navigateFromHomepageToPracticeFormPage (){
-        openBrowser();
-        HomePage homePage = new HomePage(driver);
         homePage.isPageLoaded();
         homePage.goToDesireMenu("Forms");
+        commonPage.isPageLoaded();
+        commonPage.selectSubMenu("Practice Form");
+        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
+        practiceFormPage.isPageLoaded();
+//        practiceFormPage.fillFirstName();
+//        practiceFormPage.fillLastName();
+//        practiceFormPage.fillEmail();
+        practiceFormPage.fillEntireForm();
 //        clickOnPracticeFormSubmenu();
 //        scrollDown();
 //        fillFirstName();
@@ -43,18 +50,18 @@ public class PracticeFormTest {
     }
 
     //Facem o metoda care sa deschida Browserul Chrome
-    public void openBrowser(){
-        driver = new ChromeDriver();
-        driver.get("https://demoqa.com/");
-        driver.manage().window().maximize();
-    }
+//    public void openBrowser(){
+//        driver = new ChromeDriver();
+//        driver.get("https://demoqa.com/");
+//        driver.manage().window().maximize();
+//    }
 
     //Facem o metoda care sa faca click pe meniul Forms
-    public void clickOnFormsMenu (){
-        scrollDown();
-        WebElement formsMenuElement = driver.findElement(By.xpath("//h5[text()='Forms']"));
-        formsMenuElement.click();
-    }
+//    public void clickOnFormsMenu (){
+//        scrollDown();
+//        WebElement formsMenuElement = driver.findElement(By.xpath("//h5[text()='Forms']"));
+//        formsMenuElement.click();
+//    }
 
     //Facem o metoda care sa faca scroll down pe pagina
     public void scrollDown (){
@@ -66,41 +73,41 @@ public class PracticeFormTest {
     public void clickOnPracticeFormSubmenu(){
         WebElement practiceFormSubmenuElement = driver.findElement(By.xpath("//span[text()='Practice Form']"));
         practiceFormSubmenuElement.click();
-    }
+   }
 
     //Facem o metoda sa completam campul First Name
-    public void fillFirstName(){
-        WebElement firstNameFieldElement = driver.findElement(By.id("firstName"));
-        firstNameFieldElement.sendKeys("Bogdan");
-    }
+//    public void fillFirstName(){
+//        WebElement firstNameFieldElement = driver.findElement(By.id("firstName"));
+//        firstNameFieldElement.sendKeys("Bogdan");
+//    }
 
     //Facem o metoda care sa completeze campul Last Name
-    public void fillLastName(){
-        WebElement lastNameFieldElement = driver.findElement(By.id("lastName"));
-        lastNameFieldElement.sendKeys("Popescu");
-    }
+//    public void fillLastName(){
+//        WebElement lastNameFieldElement = driver.findElement(By.id("lastName"));
+//        lastNameFieldElement.sendKeys("Popescu");
+//    }
 
     //Facem o metoda care sa completeze campul e-mail
-    public void fillEmail() {
-        WebElement emailFieldElement= driver.findElement(By.xpath("//input[@id='userEmail']"));
-        emailFieldElement.sendKeys("exemplu@yahoo.com");
-    }
+//    public void fillEmail() {
+//        WebElement emailFieldElement= driver.findElement(By.xpath("//input[@id='userEmail']"));
+//        emailFieldElement.sendKeys("exemplu@yahoo.com");
+//    }
 
     //Facem o metoda care sa selecteze genul
-    public void fillGender(String gender) {
-        WebElement maleGenderCheckBoxElement= driver.findElement(By.xpath("//label[@for='gender-radio-1']"));
-        WebElement femaleGenderCheckBoxElement= driver.findElement(By.xpath("//label[@for='gender-radio-2']"));
-        WebElement otherGenderCheckBoxElement= driver.findElement(By.xpath("//label[@for='gender-radio-3']"));
-        List<WebElement> genderListElements = new ArrayList<>();
-        genderListElements.add(maleGenderCheckBoxElement);
-        genderListElements.add(femaleGenderCheckBoxElement);
-        genderListElements.add(otherGenderCheckBoxElement);
-        for(int i = 0; i<genderListElements.size(); i++){
-            if (genderListElements.get(i).getText().equals(gender)){
-                genderListElements.get(i).click();
-            }
-        }
-    }
+//    public void fillGender(String gender) {
+//        WebElement maleGenderCheckBoxElement= driver.findElement(By.xpath("//label[@for='gender-radio-1']"));
+//        WebElement femaleGenderCheckBoxElement= driver.findElement(By.xpath("//label[@for='gender-radio-2']"));
+//        WebElement otherGenderCheckBoxElement= driver.findElement(By.xpath("//label[@for='gender-radio-3']"));
+//        List<WebElement> genderListElements = new ArrayList<>();
+//        genderListElements.add(maleGenderCheckBoxElement);
+//        genderListElements.add(femaleGenderCheckBoxElement);
+//        genderListElements.add(otherGenderCheckBoxElement);
+//        for(int i = 0; i<genderListElements.size(); i++){
+//            if (genderListElements.get(i).getText().equals(gender)){
+//                genderListElements.get(i).click();
+//            }
+//        }
+//    }
 
     //Facem o metoda care sa completeze campul Phone Number
     public void fillPhoneNumber() {

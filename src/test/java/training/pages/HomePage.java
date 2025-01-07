@@ -12,15 +12,15 @@ import java.util.List;
 
 public class HomePage extends BasePage{
     //Identificam webelementele specifice paginii
-    @FindBy(xpath = "//h5[text()='Forms']")
+    @FindBy(xpath = "//h5")
     private List<WebElement> menuListElement;
+
     @FindBy(xpath = "//img[@class='banner-image']")
     private WebElement pageTitle;
 
     //Un constructor care preia din clasa BasePage
     public HomePage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     //Implementare proprie pentru HomePage a metodei abstracte din BasePage
