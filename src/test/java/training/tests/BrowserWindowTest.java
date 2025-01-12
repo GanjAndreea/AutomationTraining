@@ -16,9 +16,8 @@ public class BrowserWindowTest extends BaseTest {
        commonPage.isPageLoaded();
        commonPage.selectSubMenu(BROWSER_WINDOWS);
        WindowsPage windowsPage = new WindowsPage(driver);
-        windowsPage.isPageLoaded();
-        windowsPage.clickOnNewTabButton();
-        windowsPage.interactWithNewTab();
+       windowsPage.isPageLoaded();
+       windowsPage.interactWithAllWindowsOrTabs();
 //        openBrowser();
 //        clickOnAlertsFrameAndWindowMenu();
 //        clickOnBrowserWindowSubmenu();

@@ -1,5 +1,6 @@
 package training.pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,35 +35,50 @@ public class WindowsPage extends BasePage{
     }
 
 
-    public void clickOnBrowserWindowSubmenu() {
-        WebElement brwserWindowSubmenuElement = driver.findElement(By.xpath("//span[text()='Browser Windows']"));
-        brwserWindowSubmenuElement.click();
+//    public void clickOnBrowserWindowSubmenu() {
+//        WebElement brwserWindowSubmenuElement = driver.findElement(By.xpath("//span[text()='Browser Windows']"));
+//        brwserWindowSubmenuElement.click();
+//    }
+
+    public void interactWithAllWindowsOrTabs(){
+            clickOnNewTabButton();
+            clickOnNewWindowButton();
     }
 
     public void clickOnNewTabButton(){
-        newTabButtonElement.click();
-    }
-
-    public void interactWithNewTab(){
-        List<String> windowsList = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(windowsList.get(1));
+        elementsHelper.clickElement(newTabButtonElement);
+        windowHelpers.switchToWindow(1);
         System.out.println("Textul din noul tab este " + sampleText.getText());
+        windowHelpers.closeWindowOrTab();
+        windowHelpers.switchToWindow(0);
+//        newTabButtonElement.click();
     }
 
-    public void switchToDefaultWindow(){
-        List<String> windowList = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(windowList.get(0));
-    }
+//    public void interactWithNewTab(){
+//        List<String> windowsList = new ArrayList<>(driver.getWindowHandles());
+//        driver.switchTo().window(windowsList.get(1));
+//        System.out.println("Textul din noul tab este " + sampleText.getText());
+//    }
 
+//    public void switchToDefaultWindow(){
+//        List<String> windowList = new ArrayList<>(driver.getWindowHandles());
+//        driver.switchTo().window(windowList.get(0));
+//    }
+//
     public void clickOnNewWindowButton(){
-        newWindowButtonElement.click();
-    }
-
-    public void interactWithNewWindow(){
-        List<String> windowsList = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(windowsList.get(1));
+        elementsHelper.clickElement(newWindowButtonElement);
+        windowHelpers.switchToWindow(1);
         System.out.println("Textul din noua fereastra este " + messageText.getText());
-    }
+        windowHelpers.closeWindowOrTab();
+        windowHelpers.switchToWindow(0);
+//        newWindowButtonElement.click();
+   }
+//
+//    public void interactWithNewWindow(){
+//        List<String> windowsList = new ArrayList<>(driver.getWindowHandles());
+//        driver.switchTo().window(windowsList.get(1));
+//        System.out.println("Textul din noua fereastra este " + messageText.getText());
+//    }
 
     @Override
     public void isPageLoaded() {

@@ -19,10 +19,7 @@ public class FramesTest extends BaseTest {
         commonPage.selectSubMenu(FRAMES_SUBMENU);
         FramesPage framesPage = new FramesPage(driver);
         framesPage.isPageLoaded();
-        framesPage.interactWithFrameOne();
-        framesPage.switchToDefaultPage();
-        framesPage.interactWithFrameTwo();
-        framesPage.switchToDefaultPage();
+        framesPage.interactWithAllFrames();
 //        openBrowser();
 //        clickOnAlertsFrameAndWindowMenu();
 //        clickOnFramesSubmenu();

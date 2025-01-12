@@ -10,6 +10,7 @@ import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PracticeFormPage extends BasePage{
 
@@ -47,6 +48,9 @@ public class PracticeFormPage extends BasePage{
     @FindBy (xpath = "//label[text()=\"Reading\"]")
     private WebElement selectHobbies2;
 
+    @FindBy (xpath = "//label[text()=\"Music\"]")
+    private WebElement selectHobbies3;
+
     @FindBy (id = "currentAddress")
     private WebElement currentAddress;
 
@@ -75,35 +79,55 @@ public class PracticeFormPage extends BasePage{
 
     //Metode specifice paginii
 
-    public void fillEntireForm(){
-        fillFirstName();
-        fillLastName();
+    public void fillEntireForm(String firstName, String lastName,String emailValue, String gender, String phoneNumber,
+                               List<String> subjects, List<String> hobbies, String address, String DOB, String state, String city){
+        fillFirstName(firstName);
+        fillLastName(lastName);
         elementsHelper.scrollDown();
-        fillEmail();
-        fillGender("Male");
-        fillPhoneNumber();
-        selectSubjects();
-        selectHobbies();
-        setCurrentAddress();
+        fillEmail(emailValue);
+        fillGender(gender);
+        fillPhoneNumber(phoneNumber);
+        selectSubjects(subjects);
+        selectHobbies(hobbies);
+        setCurrentAddress(address);
         uploadPicture();
-        dateOfBirth();
+        dateOfBirth(DOB);
         elementsHelper.scrollDown();
-        stateAndCity();
+        stateAndCity(state,city);
         pause();
         submitButton();
         pause();
     }
 
-    public void fillEmail() {
-        elementsHelper.fillElement(fillEmail,"exemplu@yahoo.com");
+    public void fillEntireFormWithPropertiesData(Map<String,Object> practiceFormData){
+        fillFirstName((String) practiceFormData.get("firstName"));
+        fillLastName((String) practiceFormData.get("lastName"));
+        elementsHelper.scrollDown();
+        fillEmail((String) practiceFormData.get("email"));
+        fillGender((String) practiceFormData.get("gender"));
+        fillPhoneNumber((String) practiceFormData.get("phoneNumber"));
+        selectSubjects((List <String>) practiceFormData.get("subject"));
+        selectHobbies((List <String>) practiceFormData.get("hobbies"));
+        setCurrentAddress((String) practiceFormData.get("address"));
+        uploadPicture();
+        dateOfBirth((String) practiceFormData.get("DOB"));
+        elementsHelper.scrollDown();
+        stateAndCity((String) practiceFormData.get("state"), (String) practiceFormData.get("city"));
+        pause();
+        submitButton();
+        pause();
     }
 
-    public void fillFirstName(){
-        elementsHelper.fillElement(fillFirstName, "Bogdan");
+    public void fillEmail(String emailValue) {
+        elementsHelper.fillElement(fillEmail,emailValue);
     }
 
-    public void fillLastName(){
-        elementsHelper.fillElement(fillLastName, "Popescu");
+    public void fillFirstName(String firstName){
+        elementsHelper.fillElement(fillFirstName, firstName);
+    }
+
+    public void fillLastName(String lastName){
+        elementsHelper.fillElement(fillLastName, lastName);
     }
 
     public void fillGender(String gender) {
@@ -115,30 +139,36 @@ public class PracticeFormPage extends BasePage{
        elementsHelper.selectElementByTextFromList(gender,genderListElements);
     }
 
-    public void fillPhoneNumber(){
-        elementsHelper.fillElement(fillphoneNumber, "072712345678");
+    public void fillPhoneNumber(String phoneNumber){
+        elementsHelper.fillElement(fillphoneNumber, phoneNumber);
     }
 
-    public void selectSubjects(){
-        elementsHelper.selectElementUsingKeys(selectsubjects, "Accounting", Keys.ENTER);
-        elementsHelper.selectElementUsingKeys(selectsubjects, "Maths",Keys.ENTER);
+    public void selectSubjects(List<String> subjectList){
+        for (String subject : subjectList){
+            elementsHelper.selectElementUsingKeys(selectsubjects, subject, Keys.ENTER);
+        }
+//        elementsHelper.selectElementUsingKeys(selectsubjects,"Accounting" , Keys.ENTER);
+//        elementsHelper.selectElementUsingKeys(selectsubjects, "Maths",Keys.ENTER);
     }
 
-    public void selectHobbies(){
-        elementsHelper.clickElement(selectHobbies);
-        elementsHelper.clickElement(selectHobbies2);
+    public void selectHobbies(List<String> hobbiesList){
+        List <WebElement> hobbiesElementsList = List.of(selectHobbies,selectHobbies2,selectHobbies3);
+        for (String hobby : hobbiesList ){
+            elementsHelper.selectElementByTextFromList(hobby,hobbiesElementsList);
+        }
+
     }
 
-    public void setCurrentAddress (){
-        elementsHelper.fillElement(currentAddress, "Strada Visinului");
+    public void setCurrentAddress (String address){
+        elementsHelper.fillElement(currentAddress, address);
     }
 
     public void uploadPicture(){
         elementsHelper.uploadFileToElement(uploadPicture);
     }
 
-    public void dateOfBirth (){
-        elementsHelper.selectElementUsingKeys(dateOfBirth,"2 Aprilie 1996",Keys.HOME);
+    public void dateOfBirth (String dateOfBirthValue){
+        elementsHelper.selectElementUsingKeys(dateOfBirth,dateOfBirthValue,Keys.HOME);
         for (int index = 1; index <=11 ; index++){
             elementsHelper.keyboardEnters(defaultElement,Keys.DELETE);
         }
@@ -150,9 +180,9 @@ public class PracticeFormPage extends BasePage{
 //        js.executeScript("window.scrollBy(0,400)");
 //    }
 
-    public void stateAndCity(){
-        elementsHelper.selectElementUsingKeys(selectState,"NCR",Keys.ENTER);
-        elementsHelper.selectElementUsingKeys(selectCity,"Delhi",Keys.ENTER);
+    public void stateAndCity(String stateValue, String cityValue){
+        elementsHelper.selectElementUsingKeys(selectState,stateValue,Keys.ENTER);
+        elementsHelper.selectElementUsingKeys(selectCity,cityValue,Keys.ENTER);
     }
 
     public void pause(){

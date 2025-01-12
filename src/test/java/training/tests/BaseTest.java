@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import propertyUtility.PropertyUtility;
 import training.pages.CommonPage;
 import training.pages.HomePage;
 
@@ -13,6 +14,7 @@ public class BaseTest {
     public WebDriver driver;
     public HomePage homePage;
     public CommonPage commonPage;
+    public PropertyUtility propertyUtility;
 
     @BeforeMethod
     public void openBroswer(){

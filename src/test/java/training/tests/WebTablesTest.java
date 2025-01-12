@@ -5,9 +5,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import propertyUtility.PropertyUtility;
 import training.pages.WebTablePage;
 
 import java.util.List;
+import java.util.Map;
 
 import static training.constants.MenuKeys.ELEMENT_MENU;
 import static training.constants.SubMenuKeys.WEBTABLE_SUBMENU;
@@ -24,12 +26,14 @@ public class WebTablesTest extends BaseTest{
         commonPage.isPageLoaded();
         commonPage.selectSubMenu(WEBTABLE_SUBMENU);
         WebTablePage webTablePage = new WebTablePage(driver);
+        propertyUtility =new PropertyUtility("WebElementTest");
+
+//        webTablePage.fillTableRow();
+        Map<String,Object> webElementDataEntry = propertyUtility.getAllProperties();
         webTablePage.isPageLoaded();
-        webTablePage.getInitialTableSize();
-        webTablePage.clickOnAddButon();
-        webTablePage.fillTableRow();
-        webTablePage.clickOnSubmitButton();
-        webTablePage.checkNewTableRecord();
+//        webTablePage.getInitialTableSize();
+        webTablePage.fillTableRow(webElementDataEntry);
+//        webTablePage.checkNewTableRecord();
 //        openBrowser();
 //        clickOnElementsMenu();
 //        openWebTables();

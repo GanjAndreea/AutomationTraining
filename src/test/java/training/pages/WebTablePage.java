@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 import java.util.List;
+import java.util.Map;
 
 public class WebTablePage extends BasePage{
 
@@ -52,37 +53,48 @@ public class WebTablePage extends BasePage{
         elementsHelper.clickElement(addButtonElement);
     }
 
-    public void fillTableRow(){
-        fillFirstName();
-        fillLastName();
-        fillEmailAddress();
-        fillAge();
-        fillSalary();
-        fillDepartament();
+    public void fillTableRow(Map<String,Object> webElementData){
+        List <String> firstNameValues = (List<String>) webElementData.get("firstName");
+        List <String> lastNameValues = (List<String>) webElementData.get("lastName");
+        List <String> emailValues = (List<String>) webElementData.get("email");
+        List <String> ageValues = (List<String>) webElementData.get("age");
+        List <String> salaryValues = (List<String>) webElementData.get("salary");
+        List <String> departmentValues = (List<String>) webElementData.get("department");
+        for (int i = 0 ; i<firstNameValues.size(); i++){
+            clickOnAddButon();
+            fillFirstName(firstNameValues.get(i));
+            fillLastName(lastNameValues.get(i));
+            fillEmailAddress(emailValues.get(i));
+            fillAge(ageValues.get(i));
+            fillSalary(salaryValues.get(i));
+            fillDepartament(departmentValues.get(i));
+            clickOnSubmitButton();
+        }
+
     }
 
-    public void fillFirstName(){
-        elementsHelper.fillElement(firstNameElement, "Ionut");
+    public void fillFirstName(String name){
+        elementsHelper.fillElement(firstNameElement, name);
     }
 
-    public void fillLastName(){
-        elementsHelper.fillElement(lastNameElement, "Tester");
+    public void fillLastName(String numeFamilie){
+        elementsHelper.fillElement(lastNameElement, numeFamilie);
     }
 
-    public void fillEmailAddress() {
-        elementsHelper.fillElement(emailAddressElement,"ionut.tester@yahoo.com");
+    public void fillEmailAddress(String email) {
+        elementsHelper.fillElement(emailAddressElement,email);
     }
 
-    public void fillAge() {
-        elementsHelper.fillElement(ageElement,"99");
+    public void fillAge(String age) {
+        elementsHelper.fillElement(ageElement,age);
     }
 
-    public void fillSalary() {
-        elementsHelper.fillElement(salaryElement,"999999");
+    public void fillSalary(String salary) {
+        elementsHelper.fillElement(salaryElement,salary);
     }
 
-    public void fillDepartament() {
-        elementsHelper.fillElement(departamentElement,"IT/MC");
+    public void fillDepartament(String department) {
+        elementsHelper.fillElement(departamentElement,department);
     }
 
     public void clickOnSubmitButton(){

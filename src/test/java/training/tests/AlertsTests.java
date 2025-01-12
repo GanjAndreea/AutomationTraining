@@ -24,7 +24,7 @@ public class AlertsTests extends BaseTest {
         commonPage.selectSubMenu(ALERTS_SUBMENU);
         AlertsPage alertsPage = new AlertsPage(driver);
         alertsPage.isPageLoaded();
-        alertsPage.interactWithAllAlerts();
+        alertsPage.interactWithAllAlerts("Alerts Test");
 //        alertsPage.clickFirstAlert();
 //        alertsPage.interactWithAlertOk();
 //        alertsPage.clickOnThirdAlertButton();

@@ -1,7 +1,6 @@
 package training.pages;
 
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,62 +33,65 @@ public class AlertsPage extends BasePage{
     }
 
     //metode specifice pentru pagina
-    public void interactWithAllAlerts(){
-        clickFirstAlert();
-        interactWithAlertOk();
-        clickOnThirdAlertButton();
-        interactWithConfirmAlert();
-        clickOnFourthAlertButton();
-        interactWithTextAlert();
+    public void interactWithAllAlerts(String alertText){
+        interactWithFirstAlert();
+        interactWithWaitingAlert();
+        interactWithThirdAlert();
+        interactWithFourthAlert(alertText);
     }
-    public void clickFirstAlert(){
+    public void interactWithFirstAlert(){
         firstAlertButton.click();
+        alertHelpers.acceptAlert();
     }
 
-    public void interactWithAlertOk(){
-        Alert alertOk = driver.switchTo().alert();
-        alertOk.accept();
-    }
+//    public void interactWithAlertOk(){
+//        Alert alertOk = driver.switchTo().alert();
+//        alertOk.accept();
+//    }
 
     public void interactWithWaitingAlert(){
-    clickOnSecondAlertButton();
-    waitForAlert();
-    acceptSecondAlert();
+        elementsHelper.clickElement(secondAlertButton);
+        alertHelpers.timerAlert();
+//    clickOnSecondAlertButton();
+//    waitForAlert();
+//    acceptSecondAlert();
     }
 
-    public void clickOnSecondAlertButton(){
-        secondAlertButton.click();
+//    public void clickOnSecondAlertButton(){
+//        secondAlertButton.click();
+//    }
+//
+//    public void acceptSecondAlert(){
+//        waitForAlert();
+//        Alert timerAlert = driver.switchTo().alert();
+//        timerAlert.accept();
+//    }
+
+//    public void waitForAlert (){
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+//        wait.until(ExpectedConditions.alertIsPresent());
+//    }
+
+    public void interactWithThirdAlert(){
+        elementsHelper.clickElement(thirdAlertButton);
+        alertHelpers.dismissAlert();
     }
 
-    public void acceptSecondAlert(){
-        waitForAlert();
-        Alert timerAlert = driver.switchTo().alert();
-        timerAlert.accept();
+//    public void interactWithConfirmAlert(){
+//        Alert confirmAlert = driver.switchTo().alert();
+//        confirmAlert.dismiss();
+//    }
+
+    public void interactWithFourthAlert(String text){
+        elementsHelper.clickElement(fourthAlertButton);
+        alertHelpers.promtAlert(text);
     }
 
-    public void waitForAlert (){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.alertIsPresent());
-    }
-
-    public void clickOnThirdAlertButton(){
-        thirdAlertButton.click();
-    }
-
-    public void interactWithConfirmAlert(){
-        Alert confirmAlert = driver.switchTo().alert();
-        confirmAlert.dismiss();
-    }
-
-    public void clickOnFourthAlertButton(){
-        fourthAlertButton.click();
-    }
-
-    public void interactWithTextAlert(){
-        Alert textAlert = driver.switchTo().alert();
-        textAlert.sendKeys("Am reusit sa termin ora cu succes");
-        textAlert.accept();
-    }
+//    public void interactWithTextAlert(){
+//        Alert textAlert = driver.switchTo().alert();
+//        textAlert.sendKeys("Am reusit sa termin ora cu succes");
+//        textAlert.accept();
+//    }
 
     @Override
    public void isPageLoaded() {

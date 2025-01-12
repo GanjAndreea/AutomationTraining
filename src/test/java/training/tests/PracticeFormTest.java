@@ -4,6 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import org.openqa.selenium.Keys;
+import propertyUtility.PropertyUtility;
 import training.pages.CommonPage;
 import training.pages.HomePage;
 import training.pages.PracticeFormPage;
@@ -11,6 +12,7 @@ import training.pages.PracticeFormPage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static training.constants.MenuKeys.FORMS_MENU;
 import static training.constants.SubMenuKeys.PRACTICE_FORM_SUBMENIU;
@@ -28,10 +30,29 @@ public class PracticeFormTest extends BaseTest {
         commonPage.selectSubMenu(PRACTICE_FORM_SUBMENIU);
         PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
         practiceFormPage.isPageLoaded();
+        propertyUtility = new  PropertyUtility("PracticeFormTest");
+        Map <String,Object> practiceFormDataEntry = propertyUtility.getAllProperties();
+        List<String> subjectList = List.of("Accounting","Maths");
+        List<String> hobbiesList = List.of("Sports","Music");
+        practiceFormPage.fillEntireFormWithPropertiesData(practiceFormDataEntry);
 //        practiceFormPage.fillFirstName();
 //        practiceFormPage.fillLastName();
 //        practiceFormPage.fillEmail();
-        practiceFormPage.fillEntireForm();
+//        practiceFormPage.fillEntireForm("Stanciu","Ionut","exemplu@yahoo.com", "Male","0712345678",subjectList,hobbiesList, "Strada Pantof",
+//                "2 Aprilie 1996","NCR","Delhi" );
+//        practiceFormPage.fillEntireForm(
+//        propertyUtility.getProperty("firstName"),
+//        propertyUtility.getProperty("lastName"),
+//        propertyUtility.getProperty("email"),
+//        propertyUtility.getProperty("phoneNumber"),
+//        propertyUtility.getProperty("gender"),
+//        propertyUtility.getPropertyAsList("subject"),
+//        propertyUtility.getPropertyAsList("hobbies"),
+//        propertyUtility.getProperty("address"),
+//        propertyUtility.getProperty("DOB"),
+//        propertyUtility.getProperty("state"),
+//        propertyUtility.getProperty("city")
+//                );
 //        clickOnPracticeFormSubmenu();
 //        scrollDown();
 //        fillFirstName();
